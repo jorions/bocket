@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     public function bookmarks()
     {
-        $this->hasMany('App\Bookmark');
+        return $this->hasMany('App\Bookmark');
     }
 
     /**
@@ -37,7 +37,7 @@ class User extends Authenticatable
      */
     public function tags()
     {
-        $this->hasMany('App\Tag');
+        return $this->hasMany('App\Tag');
     }
 
 

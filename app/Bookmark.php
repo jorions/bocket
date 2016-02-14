@@ -6,12 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bookmark extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'link',
+    ];
+
     /**
      * Get the tags for the bookmark
      */
     public function tags()
     {
-        $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
 
     /**
@@ -19,6 +29,6 @@ class Bookmark extends Model
      */
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 }
