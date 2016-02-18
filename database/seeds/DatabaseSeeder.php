@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         /*
          * Tell the factory method (which by default looks at the "ModelFactory.php" file) to look at the App\User object,
-         * and then create 10 version of it using the parameters defined there
+         * and then create 10 versions of it using the parameters defined there
          *
          * --THIS--
          * foreach([1,2,3,4,5,6,7,8,9,10], as $num) {
