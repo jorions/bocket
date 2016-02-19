@@ -14,8 +14,8 @@ class CreateBookmarkTagTable extends Migration
     {
         Schema::create('bookmark_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bookmark_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
+            $table->integer('bookmark_id')->unsigned()->index();
+            $table->integer('tag_id')->unsigned()->index();
             $table->timestamps();
         });
     }
