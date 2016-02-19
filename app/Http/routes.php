@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', 'UserController');
+Route::resource('user', 'UsersController');
 
-Route::resource('tag', 'TagController');
+Route::resource('tag', 'TagsController');
 
-Route::resource('bookmark', 'BookmarkController');
+Route::resource('bookmark', 'BookmarksController');
 
 /*
 |--------------------------------------------------------------------------

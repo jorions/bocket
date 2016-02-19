@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
 
-class UserController extends Controller
+class BookmarksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return App\User::all();
+        return App\Bookmark::all();
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return App\User::with('bookmarks.tags')->find($id);
+        return App\Bookmark::with('user.bookmarks')->find($id);
     }
 
     /**
