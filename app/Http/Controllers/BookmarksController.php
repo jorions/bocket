@@ -20,6 +20,7 @@ class BookmarksController extends Controller
         return App\Bookmark::all();
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,8 +29,17 @@ class BookmarksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bookmark = new App\Bookmark;
+
+        //$bookmark->user_id = Auth::user()->id;
+        $bookmark->user_id = $request->user_id;
+        $bookmark->link = $request->link;
+
+        $bookmark->save();
+
+        return $bookmark;
     }
+
 
     /**
      * Display the specified resource.
@@ -39,8 +49,9 @@ class BookmarksController extends Controller
      */
     public function show($id)
     {
-        return App\Bookmark::with('user.bookmarks')->find($id);
+        return App\Bookmark::with('user')->find($id);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -51,8 +62,18 @@ class BookmarksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bookmark = App\Bookmark::find($id);
+
+
+        //$bookmark->user_id = Auth::user()->id;
+        $bookmark->user_id = $request->user_id;
+        $bookmark->link = $request->link;
+
+        $bookmark->save();
+
+        return $bookmark;
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -62,6 +83,9 @@ class BookmarksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookmark = App\Bookmark::find($id);
+        $bookmark->delete();
+
+        return $bookmark;
     }
 }

@@ -28,7 +28,15 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new App\Tag;
+
+        //$tag->user_id = Auth::user()->id;
+        $tag->user_id = $request->user_id;
+        $tag->name = $request->name;
+
+        $tag->save();
+
+        return $tag;
     }
 
     /**
@@ -51,7 +59,15 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tag = App\Tag::find($id);
+
+        //$tag->user_id = Auth::user()->id;
+        $tag->user_id = $request->user_id;
+        $tag->name = $request->name;
+
+        $tag->save();
+
+        return $tag;
     }
 
     /**
@@ -62,6 +78,9 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = App\Tag::find($id);
+        $tag->delete();
+
+        return $tag;
     }
 }
