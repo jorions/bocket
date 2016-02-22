@@ -15,11 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', 'UsersController');
+Route::resource('user', 'UsersController', [
+    'except' => ['create', 'edit']
+]);
 
-Route::resource('tag', 'TagsController');
+Route::resource('tag', 'TagsController', [
+    'except' => ['create', 'edit']
+]);
 
-Route::resource('bookmark', 'BookmarksController');
+Route::resource('bookmark', 'BookmarksController', [
+    'except' => ['create', 'edit']
+]);
 
 /*
 |--------------------------------------------------------------------------
