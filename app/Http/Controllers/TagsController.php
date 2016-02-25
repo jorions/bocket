@@ -30,8 +30,7 @@ class TagsController extends Controller
     {
         $tag = new App\Tag;
 
-        //$tag->user_id = Auth::user()->id;
-        $tag->user_id = $request->user_id;
+        $tag->user_id = \Auth::user()->id;
         $tag->name = $request->name;
 
         $tag->save();
@@ -61,8 +60,6 @@ class TagsController extends Controller
     {
         $tag = App\Tag::find($id);
 
-        //$tag->user_id = Auth::user()->id;
-        $tag->user_id = $request->user_id;
         $tag->name = $request->name;
 
         $tag->save();

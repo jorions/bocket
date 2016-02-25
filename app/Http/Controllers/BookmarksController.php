@@ -31,8 +31,7 @@ class BookmarksController extends Controller
     {
         $bookmark = new App\Bookmark;
 
-        //$bookmark->user_id = Auth::user()->id;
-        $bookmark->user_id = $request->user_id;
+        $bookmark->user_id = \Auth::user()->id;
         $bookmark->link = $request->link;
 
         $bookmark->save();
@@ -64,9 +63,6 @@ class BookmarksController extends Controller
     {
         $bookmark = App\Bookmark::find($id);
 
-
-        //$bookmark->user_id = Auth::user()->id;
-        $bookmark->user_id = $request->user_id;
         $bookmark->link = $request->link;
 
         $bookmark->save();
