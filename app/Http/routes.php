@@ -11,22 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('user', 'UsersController', [
-    'except' => ['create', 'edit']
-]);
-
-Route::resource('tag', 'TagsController', [
-    'except' => ['create', 'edit']
-]);
-
-Route::resource('bookmark', 'BookmarksController', [
-    'except' => ['create', 'edit']
-]);
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -38,12 +22,41 @@ Route::resource('bookmark', 'BookmarksController', [
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::resource('user', 'UsersController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::resource('tag', 'TagsController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::resource('bookmark', 'BookmarksController', [
+        'only' => ['index', 'show']
+    ]);
+
+    Route::group(['middleware' => 'auth'], function() {
+
+        Route::resource('user', 'UsersController', [
+          'only' => ['store', 'update', 'destroy']
+        ]);
+
+        Route::resource('tag', 'TagsController', [
+          'only' => ['store', 'update', 'destroy']
+        ]);
+
+        Route::resource('bookmark', 'BookmarksController', [
+          'only' => ['store', 'update', 'destroy']
+       ]);
+    });
 });
